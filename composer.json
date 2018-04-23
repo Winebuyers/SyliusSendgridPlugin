@@ -1,0 +1,16 @@
+{
+    "name": "winebuyers/sylius-sendgrid-plugin",
+    "type": "sylius-plugin",
+    "description": "Sendgrid SMTP Templates Plugin",
+    "license": "MIT",
+    "require": {
+        "php": "^7.1",
+
+        "sylius/sylius": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Winebuyers\\SyliusSendgridPlugin\\": "src/"
+        }
+    }
+}

@@ -1,2 +1,2 @@
 # SyliusSendgridPlugin
-Sendgrid plugin for Sylius
+Sendgrid plugin for Sylius.

@@ -1,0 +1,55 @@
+services:
+    _defaults:
+        autowire: true     
+        autoconfigure: true
+        public: true
+
+    Winebuyers\SyliusSendgridPlugin\Adapter\:
+        resource: '../../Adapter'
+
+    # sylius.email_transformers.generic:
+    #     class: Winebuyers\SendgridBundle\Adapter\SendgridEmailDataAdapter
+
+    sylius.email_provider:
+         class: Winebuyers\SyliusSendgridPlugin\Provider\SendgridEmailProvider
+         arguments: ['@sylius.factory.email', '%sylius.mailer.emails%']
+
+    sylius.factory.email:
+        class: Winebuyers\SyliusSendgridPlugin\Factory\SendgridEmailFactory
+    
+    sylius.email_sender:
+        class: Winebuyers\SyliusSendgridPlugin\Sender\SendgridSender
+        arguments: ['@sylius.email_renderer.adapter', '@sylius.email_sender.adapter', '@sylius.email_provider', '@sylius.mailer.default_settings_provider']
+    
+    sylius.email_sender.adapter.swiftmailer:
+        class: Winebuyers\SyliusSendgridPlugin\Adapter\SendgridMailerAdapter
+        arguments: ['@mailer', '%sylius.mailer.emails%', '@router', '@service_container']
+
+
+
+# services:
+#     sylius.factory.email:
+#         class: Sylius\Component\Mailer\Factory\EmailFactory
+#     
+#     sylius.email_sender:
+#         class: Sylius\Component\Mailer\Sender\Sender
+#         arguments: ['@sylius.email_renderer.adapter', '@sylius.email_sender.adapter', '@sylius.email_provider', '@sylius.mailer.default_settings_provider']
+#     sylius.mailer.default_settings_provider:
+#         class: Sylius\Component\Mailer\Provider\DefaultSettingsProvider
+#         arguments: ['%sylius.mailer.sender_name%', '%sylius.mailer.sender_address%']
+#     sylius.email_renderer.adapter.abstract:
+#         class: Sylius\Component\Mailer\Renderer\Adapter\AbstractAdapter
+#         calls:
+#             - [setEventDispatcher, ['@event_dispatcher']]
+
+#     sylius.email_renderer.adapter.twig:
+#         class: Sylius\Bundle\MailerBundle\Renderer\Adapter\EmailTwigAdapter
+#         arguments: ['@twig']
+#     sylius.email_sender.adapter.abstract:
+#         class: Sylius\Component\Mailer\Sender\Adapter\AbstractAdapter
+#         calls:
+#             - [setEventDispatcher, ['@event_dispatcher']]
+
+#     sylius.email_sender.adapter.swiftmailer:
+#         class: Sylius\Bundle\MailerBundle\Sender\Adapter\SwiftMailerAdapter
+#         arguments: ['@mailer']
