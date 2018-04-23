@@ -6,12 +6,12 @@ emails:
         subject: Welcome %%user%%
         template_id: 'b656b788-4ffa-42e4-ae7e-b715373c378c'
         enabled: true
-        transformer: Winebuyers\SendgridBundle\Adapter\SendgridEmailDataAdapter
+        transformer: Winebuyers\SyliusSendgridPlugin\Adapter\SendgridEmailDataAdapter
     verification_token:
         subject: '%%name%% Verify Winebuyers Account'
         template_id: a2db7036-eb4c-4f16-bf15-2a370562a6ec
         enabled: true
-        transformer: 'Winebuyers\SendgridBundle\Adapter\VerificationTokenEmailDataAdapter'
+        transformer: Winebuyers\SyliusSendgridPlugin\Adapter\VerificationTokenEmailDataAdapter
     reset_password_token:
         subject: Welcome %%user%%
         template_id: 'b656b788-4ffa-42e4-ae7e-b715373c378c'

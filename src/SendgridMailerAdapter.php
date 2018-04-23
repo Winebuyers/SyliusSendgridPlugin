@@ -2,19 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Winebuyers\SyliusSendgridPlugin\Adapter;
+namespace Winebuyers\SyliusSendgridPlugin;
 
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\ExpressionLanguage\SyntaxError;
+
 use Sylius\Component\Mailer\Event\EmailSendEvent;
 use Sylius\Component\Mailer\Model\EmailInterface;
 use Sylius\Component\Mailer\Renderer\RenderedEmail;
 use Sylius\Component\Mailer\Sender\Adapter\AbstractAdapter;
 use Sylius\Component\Mailer\SyliusMailerEvents;
 
-use Winebuyers\SendgridBundle\Adapter\SendgridEmailDataAdapterInterface;
+use Winebuyers\SyliusSendgridPlugin\Adapter\SendgridEmailDataAdapterInterface;
 use Webmozart\Assert\Assert;
 use Smtpapi\Header;
 
@@ -99,11 +100,10 @@ class SendgridMailerAdapter extends AbstractAdapter
         $message_headers  = $message->getHeaders();
         $message_headers->addTextHeader(Header::NAME, $header->jsonString());
 
-        // $emailSendEvent = new EmailSendEvent($message, $email, $data, $recipients, $replyTo);
-        // $this->dispatcher->dispatch(SyliusMailerEvents::EMAIL_PRE_SEND, $emailSendEvent);
+        $emailSendEvent = new EmailSendEvent($message, $email, $data, $recipients, $replyTo);
+        $this->dispatcher->dispatch(SyliusMailerEvents::EMAIL_PRE_SEND, $emailSendEvent);
         $this->mailer->send($message);
-
-        // $this->dispatcher->dispatch(SyliusMailerEvents::EMAIL_POST_SEND, $emailSendEvent);
+        $this->dispatcher->dispatch(SyliusMailerEvents::EMAIL_POST_SEND, $emailSendEvent);
     }
 
     private function transormData(string $transformerClass): void

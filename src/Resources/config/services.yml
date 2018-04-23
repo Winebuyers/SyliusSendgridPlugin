@@ -22,10 +22,10 @@ services:
         arguments: ['@sylius.email_renderer.adapter', '@sylius.email_sender.adapter', '@sylius.email_provider', '@sylius.mailer.default_settings_provider']
     
     sylius.email_sender.adapter.swiftmailer:
-        class: Winebuyers\SyliusSendgridPlugin\Adapter\SendgridMailerAdapter
+        class: Winebuyers\SyliusSendgridPlugin\SendgridMailerAdapter
         arguments: ['@mailer', '%sylius.mailer.emails%', '@router', '@service_container']
-
-
+        calls:
+            - [setEventDispatcher, ['@event_dispatcher']]
 
 # services:
 #     sylius.factory.email:

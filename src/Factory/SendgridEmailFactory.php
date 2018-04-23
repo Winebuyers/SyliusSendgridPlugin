@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Winebuyers\SyliusSendgridPlugin\Factory;
 
-use Winebuyers\SendgridBundle\Entity\Email;
+use Winebuyers\SyliusSendgridPlugin\Entity\Email;
 use Sylius\Component\Mailer\Model\EmailInterface;
 use Sylius\Component\Mailer\Factory\EmailFactoryInterface;
 
