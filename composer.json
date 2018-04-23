@@ -8,6 +8,20 @@
 
         "sylius/sylius": "^1.0"
     },
+    "authors": [
+        {
+            "name": "Santiago Barbat",
+            "homepage": "http://sbarbat.com"
+        },
+        {
+            "name": "Winebuyers",
+            "homepage": "https://winebuyers.com"
+        }
+        {
+            "name": "Community contributions",
+            "homepage": "http://github.com/Sylius/Sylius/contributors"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Winebuyers\\SyliusSendgridPlugin\\": "src/"
