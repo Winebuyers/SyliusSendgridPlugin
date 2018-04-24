@@ -6,7 +6,9 @@
     "require": {
         "php": "^7.1",
 
-        "sylius/sylius": "^1.0"
+        "sylius/sylius": "^1.0",
+        "sendgrid/sendgrid": "^6.2",
+        "sendgrid/smtpapi": "^0.6"
     },
     "authors": [
         {
