@@ -4,8 +4,8 @@ services:
         autoconfigure: true
         public: true
 
-    Winebuyers\SyliusSendgridPlugin\Adapter\:
-        resource: '../../Adapter'
+    Winebuyers\SyliusSendgridPlugin\Transformers\:
+        resource: '../../Transformers'
 
     # sylius.email_transformers.generic:
     #     class: Winebuyers\SendgridBundle\Adapter\SendgridEmailDataAdapter

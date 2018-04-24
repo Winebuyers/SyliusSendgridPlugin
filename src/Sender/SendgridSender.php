@@ -65,7 +65,8 @@ final class SendgridSender implements SenderInterface
         $senderAddress = $email->getSenderAddress() ?: $this->defaultSettingsProvider->getSenderAddress();
         $senderName = $email->getSenderName() ?: $this->defaultSettingsProvider->getSenderName();
 
-        $renderedEmail = new RenderedEmail($email->getSubject(), $email->getContent() ?: ''); //$this->rendererAdapter->render($email, $data);
+        $renderedEmail = new RenderedEmail($email->getSubject(), $email->getContent() ?: ''); 
+        //$this->rendererAdapter->render($email, $data);
 
         $this->senderAdapter->send(
             $recipients,

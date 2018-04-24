@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Winebuyers\SyliusSendgridPlugin\Adapter;
+namespace Winebuyers\SyliusSendgridPlugin\Transformers;
 
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class VerificationTokenEmailDataAdapter implements SendgridEmailDataAdapterInterface {
+class UserTransformer implements SendgridEmailDataTransformersInterface {
 	
 	private $router;
 
@@ -21,11 +21,8 @@ class VerificationTokenEmailDataAdapter implements SendgridEmailDataAdapterInter
 
 		if($user != null) {
 			$data['name'] = $user->getCustomer()->getFullName();
-			$data['verification_url'] = $this->router->generate('sylius_shop_user_verification', [
-				            		'token' => $user->getEmailVerificationToken()
-				        		], UrlGeneratorInterface::ABSOLUTE_URL);
 		}
-
+		
  		return $data;
 	}
 }
