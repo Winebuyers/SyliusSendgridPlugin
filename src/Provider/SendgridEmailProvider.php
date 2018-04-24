@@ -9,8 +9,6 @@ use Sylius\Component\Mailer\Factory\EmailFactoryInterface;
 use Sylius\Component\Mailer\Model\EmailInterface;
 use Webmozart\Assert\Assert;
 
-
-
 final class SendgridEmailProvider implements EmailProviderInterface
 {
     /**
@@ -58,7 +56,7 @@ final class SendgridEmailProvider implements EmailProviderInterface
 
         $email->setCode($code);
         $email->setSubject($configuration['subject']);
-        $email->setTemplateId($configuration['template_id']);
+        $email->setTemplateId($configuration['template']);
 
         if (isset($configuration['enabled']) && false === $configuration['enabled']) {
             $email->setEnabled(false);
