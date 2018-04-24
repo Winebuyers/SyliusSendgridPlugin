@@ -8,8 +8,6 @@
 # Sylius Sendgrid Plugin
 Sendgrid plugin for Sylius.
 
-## This is an alpha package, without releases yet, use it under your responsability
-
 ```bash
 $ composer require winebuyers/sylius-sendgrid-plugin
 ```
