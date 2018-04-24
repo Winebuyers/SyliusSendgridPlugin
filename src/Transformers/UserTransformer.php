@@ -7,7 +7,7 @@ namespace Winebuyers\SyliusSendgridPlugin\Transformers;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class UserTransformer implements SendgridEmailDataTransformersInterface {
+class UserTransformer implements SendgridTransformersInterface {
 	
 	private $router;
 
