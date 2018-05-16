@@ -6,6 +6,7 @@ namespace Winebuyers\SyliusSendgridPlugin;
 
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 use Sylius\Component\Mailer\Event\EmailSendEvent;
 use Sylius\Component\Mailer\Model\EmailInterface;
@@ -109,7 +110,11 @@ class SendgridMailerAdapter extends AbstractAdapter
 
     private function transormData(string $transformerClass): void
     {
-        $instance = $this->container->get($transformerClass);
+        try {
+            $instance = $this->container->get($transformerClass);
+        } catch(ServiceNotFoundException $e) {
+            $instance = new $transformerClass($this->container, $this->router);
+        }
 
         Assert::implementsInterface($instance, SendgridTransformersInterface::class);
 
