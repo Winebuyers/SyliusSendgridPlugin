@@ -73,7 +73,9 @@ class SendgridMailerAdapter extends AbstractAdapter
             ->setSubject($this->replaceSubjectWithData($email))
             ->setFrom([$senderAddress => $senderName])
             ->setTo($recipients)
-            ->setReplyTo($replyTo);
+            ->setReplyTo($replyTo)
+            ->setContentType('text/html');
+
 
         $header = new Header;
         $filter = [
@@ -96,7 +98,8 @@ class SendgridMailerAdapter extends AbstractAdapter
 
         $message_headers  = $message->getHeaders();
         $message_headers->addTextHeader(Header::NAME, $header->jsonString());
-
+        $message_headers->addParameterizedHeader(Header::NAME, $header->jsonString());
+        
         $emailSendEvent = new EmailSendEvent($message, $email, $data, $recipients, $replyTo);
 
         $this->dispatcher->dispatch(SyliusMailerEvents::EMAIL_PRE_SEND, $emailSendEvent);
