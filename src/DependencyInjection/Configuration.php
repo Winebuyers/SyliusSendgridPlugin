@@ -1,14 +1,21 @@
 <?php
 
+/*
+ * This file is part of the Sylius package.
+ *
+ * (c) Paweł Jędrzejewski
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
-namespace Winebuyers\SyliusSendgridPlugin\DependencyInjection;
+namespace Sylius\Bundle\MailerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class Configuration implements ConfigurationInterface
 {
@@ -17,9 +24,8 @@ final class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('winebuyers_sylius_sendgrid');
+        $rootNode = $treeBuilder->root('sylius_mailer');
 
         $rootNode
             ->children()
@@ -52,9 +58,8 @@ final class Configuration implements ConfigurationInterface
                     ->prototype('array')
                         ->children()
                             ->scalarNode('subject')->cannotBeEmpty()->end()
+                            ->scalarNode('template')->cannotBeEmpty()->end()
                             ->scalarNode('transformer')->end()
-                            ->scalarNode('template')->end()
-                            ->scalarNode('template_id')->cannotBeEmpty()->end()
                             ->booleanNode('enabled')->defaultTrue()->end()
                             ->arrayNode('sender')
                                 ->children()

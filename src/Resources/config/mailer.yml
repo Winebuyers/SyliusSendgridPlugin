@@ -18,14 +18,14 @@ sylius_mailer:
             template: 'a2db7036-eb4c-4f16-bf15-2a370562a6ec'
             enabled: true
             transformer: Winebuyers\SyliusSendgridPlugin\Transformers\VerificationTokenTransformer
-        password_reset:
+        reset_password_token:
             subject: Reset your password
             template: '0c8bce03-5f15-4741-af1c-2d698cc22055'
             enabled: true
             transformer: Winebuyers\SyliusSendgridPlugin\Transformers\ResetPasswordTransformer
-        reset_password_token:
-            subject: Password reseted
-            template: '15571ac6-4406-4e68-97e3-5c48f3caf654'
+        password_reset:
+            subject: Reset your password
+            template: '0c8bce03-5f15-4741-af1c-2d698cc22055'
             enabled: true
             transformer: Winebuyers\SyliusSendgridPlugin\Transformers\ResetPasswordTransformer
         order_confirmation:

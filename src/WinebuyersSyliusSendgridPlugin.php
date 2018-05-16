@@ -17,4 +17,9 @@ class WinebuyersSyliusSendgridPlugin extends Bundle
     {
         return new WinebuyersSyliusSendgridExtension();
     }
+
+    public function getParent()
+    {
+        return 'SyliusMailerBundle';
+    }
 }
