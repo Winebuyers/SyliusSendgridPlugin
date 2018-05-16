@@ -21,7 +21,8 @@ final class WinebuyersSyliusSendgridExtension extends Extension
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $configFiles = [
-            'services.yml',
+            'mailer.yml',
+            'services.yml'
         ];
         foreach ($configFiles as $configFile) {
             $loader->load($configFile);

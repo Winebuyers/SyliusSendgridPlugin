@@ -1,4 +1,4 @@
-sylius_mailer:
+winebuyers_sylius_sendgrid:
     sender:
         name: "%mailer_sender_name%"
         address: "%mailer_sender_address%"
