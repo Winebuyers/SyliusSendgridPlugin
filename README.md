@@ -33,7 +33,7 @@ you can define your own transformer to transform the data you can send to the Se
 ```
 # app/config/mailer.yml
 
-sylius_mailer:
+winebuyers_sylius_sendgrid:
     sender:
         name: "%mailer_sender_name%"
         address: "%mailer_sender_address%"
