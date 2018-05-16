@@ -18,12 +18,12 @@ final class WinebuyersSyliusSendgridExtension extends Extension
     public function load(array $config, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
-
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+
         $configFiles = [
-            'mailer.yml',
-            'services.yml'
+            'services.yml',
         ];
+
         foreach ($configFiles as $configFile) {
             $loader->load($configFile);
         }
