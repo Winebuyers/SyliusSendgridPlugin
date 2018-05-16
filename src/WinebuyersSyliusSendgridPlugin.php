@@ -9,13 +9,7 @@ use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 
 use Winebuyers\SyliusSendgridPlugin\DependencyInjection\WinebuyersSyliusSendgridExtension;
 
-class WinebuyersSyliusSendgridPlugin extends Bundle
+final class WinebuyersSyliusSendgridPlugin extends Bundle
 {
     use SyliusPluginTrait;
-
-    public function getContainerExtension()
-    {
-        return new WinebuyersSyliusSendgridExtension();
-    }
-
 }
