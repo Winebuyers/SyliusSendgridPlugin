@@ -18,13 +18,6 @@ final class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('winebuyers_sylius_sendgrid');
 
-        $rootNode
-            ->children()
-                ->scalarNode('sender_adapter')->defaultValue('sylius.email_sender.adapter.swiftmailer')->end()
-                ->scalarNode('renderer_adapter')->defaultValue('sylius.email_renderer.adapter.twig')->end()
-            ->end()
-        ;
-
         $this->addEmailsSection($rootNode);
 
         return $treeBuilder;
@@ -45,7 +38,6 @@ final class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->arrayNode('emails')
-                    ->useAttributeAsKey('code')
                     ->prototype('array')
                         ->children()
                             ->scalarNode('subject')->cannotBeEmpty()->end()
@@ -60,10 +52,6 @@ final class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                     ->end()
-                ->end()
-                ->arrayNode('templates')
-                    ->useAttributeAsKey('name')
-                    ->prototype('scalar')->end()
                 ->end()
             ->end()
         ;

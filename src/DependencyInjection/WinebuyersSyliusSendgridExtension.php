@@ -15,25 +15,21 @@ final class WinebuyersSyliusSendgridExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $config, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container)
     {
-        $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $configDir = __DIR__ . '/../Resources/config';
 
-        $configFiles = [
-            'services.yml',
-        ];
+        // Load the config file
+        $configFile = $configDir . '/config.yml';
+        $configs = array_merge($configs, Yaml::parse(file_get_contents($configFile)));
 
-        foreach ($configFiles as $configFile) {
-            $loader->load($configFile);
-        }
+        $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
 
-        $container->setAlias('sylius.email_sender.adapter', $config['sender_adapter']);
-        $container->setAlias('sylius.email_renderer.adapter', $config['renderer_adapter']);
+        // Bind the services
+        $loader = new YamlFileLoader($container, new FileLocator($configDir));
+        $loader->load('services.yml');
 
-        $container->setParameter('sylius.mailer.sender_name', $config['sender']['name']);
-        $container->setParameter('sylius.mailer.sender_address', $config['sender']['address']);
-
+        // Replace Sylius config
         $container->setParameter('sylius.mailer.emails', $config['emails']);
     }
  
