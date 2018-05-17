@@ -21,7 +21,7 @@ final class WinebuyersSyliusSendgridExtension extends Extension
 
         // Load the config file
         $configFile = $configDir . '/config.yml';
-        $configs = array_merge($configs, Yaml::parse(file_get_contents($configFile)));
+        $configs = array_merge(Yaml::parse(file_get_contents($configFile)), $configs);
 
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
 
